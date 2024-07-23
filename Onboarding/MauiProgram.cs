@@ -8,6 +8,9 @@ namespace Onboarding
         public static MauiApp CreateMauiApp()
         {
             ThemeManager.ApplyThemeToSystemBars = true;
+            ThemeManager.UseAndroidSystemColor = false;
+            ThemeManager.Theme = new Theme(Color.FromArgb("FFFF6A00"));
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()

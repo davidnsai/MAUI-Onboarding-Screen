@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Onboarding.Views.OnboardingScreen"
+             xmlns:dx="http://schemas.devexpress.com/maui"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="true"
+             xmlns:Models="clr-namespace:Onboarding.Models"
+             xmlns:ViewModels="clr-namespace:Onboarding.ViewModels"
+             x:DataType="ViewModels:OnboardingViewModel"
+             Title="OnBoardingScreem">
+    <Grid Margin="25,50"
+          RowDefinitions="*,Auto">
+        <CarouselView Grid.Row="0"
+                      Position="{Binding Position}"
+                      IndicatorView="indicatorView"
+                      Loop="False"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      ItemsSource="{Binding IntroScreens}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="Models:OnBoardingModel">
+                    <Grid RowDefinitions="60*,40*">
+                        <dx:DXImage Source="{Binding IntroImage}"
+                                    Aspect="AspectFit"
+                                    Grid.Row="0" />
+                        <VerticalStackLayout Spacing="10"
+                                             Margin="0,15"
+                                             Grid.Row="1">
+                            <Label Text="{Binding IntroTitle}"
+                                   FontSize="32" />
+                            <Label Text="{Binding IntroDescription}"
+                                   FontSize="20" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <VerticalStackLayout Grid.Row="1">
+            <IndicatorView x:Name="indicatorView"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Center"
+                           IndicatorSize="10"
+                           Margin="0,25"
+                           IndicatorColor="LightGray"
+                           SelectedIndicatorColor="#FF6A00" />
+            <dx:DXButton Padding="17"
+                         FontSize="20"
+                         Margin="0,15"
+                         Content="{Binding ButtonText}"
+                         Command="{Binding NextCommand}" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
